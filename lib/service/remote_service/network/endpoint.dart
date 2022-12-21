@@ -16,7 +16,7 @@ const faq = "/Content/faq";
 
 const String baseUrl = "https://afaakapp.com/";
 const String imageUrl = "https://afaakapp.com";
- /*================================================================== LOCAL URL===================================================*/
+/*================================================================== LOCAL URL===================================================*/
 
 // const String baseUrl = "http://192.168.2.173/swift-care-yii2-1671/";
 // const String imageUrl = "http://192.168.2.173";
@@ -37,7 +37,8 @@ const String end_pt_FamilyMemberList = "api/user/family-member-list";
 const String end_pt_NotificationList = "api/user/notification-list";
 const String end_pt_logout = "api/user/logout";
 const categoryListApiEndpoint = 'api/user/category-list';
-const subCategoryListApiEndpoint = 'api/user/sub-category-list';
+// const subCategoryListApiEndpoint = 'api/user/sub-category-list';
+const subCategoryListApiEndpoint = 'api/user/child-category-list';
 const providerListApiEndpoint = 'api/user/provider-list';
 const notificationToggleApiEndpoint = 'api/user/notification-on';
 const contactUsApiEndpoint = 'api/user/contact-us';
@@ -65,7 +66,6 @@ const getCartApiEndpoint = '/api/availability/get-cart-json';
 const getPaymentEndpoint = '/api/availability/booking-payment';
 const getLocationEndpoint = '/api/user/get-location';
 
-
 const String categoryIdKey = "category_id";
 const String titleKey = "title";
 const String subCategoryIdKey = "sub_category_id";
@@ -76,9 +76,6 @@ const String ClientKey = "C7KMMH-GQ6H62-BHD927-N7VMMQ";
 // const String ServerKey = "SGJNNRZLND-JBJHMRKHD9-DGRHG9B6K9";
 // const String ProfileId = "64226";
 // const String ClientKey = "CRKMMH-GQ7B62-6HNRKH-MB7VKR";
-
-
-
 
 const DAY_SUNDAY = 0;
 const DAY_MONDAY = 1;

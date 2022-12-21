@@ -11,11 +11,23 @@ class SubCategoryListResponseModal {
       {this.list, this.lLinks, this.mMeta, this.copyrighths});
 
   SubCategoryListResponseModal.fromJson(Map<String, dynamic> json) {
+
     if (json['list'] != null) {
       list = <CategoryListItem>[];
-      json['list'].forEach((v) {
+      try{
+        list = List.from(json['list'])
+            .map((e) => CategoryListItem.fromJson(e))
+            .toList();
+      }catch(error){
+        print(error);
+      }
+      /*json['list'].forEach((v) {
+        print('dassooo');
+        print(v);
         list!.add(new CategoryListItem.fromJson(v));
-      });
+      });*/
+    }else{
+      print("data sahi bhejoooo");
     }
     lLinks = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
     mMeta = json['_meta'] != null ? new Meta.fromJson(json['_meta']) : null;

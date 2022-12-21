@@ -214,7 +214,8 @@ class HomeTabController extends GetxController {
                   .then((value) {
                 if (value != null) {
                   subServiceModel = value;
-                  allSubServiceIssueList.addAll(subServiceModel!.list ?? []);
+
+                  allSubServiceIssueList.addAll(subServiceModel.list ?? []);
                   Loader.hide();
                   isSubLoading = false;
                   update();
@@ -252,13 +253,12 @@ class HomeTabController extends GetxController {
     allSubServiceIssueList = [];
     APIRepository.SubserviceTypeListAPiCall(categoryId: id, page: 0)
         .then((value) {
-      if (value != null) {
-        subServiceModel = value;
-        allSubServiceIssueList = subServiceModel.list ?? [];
-        paginatedSubServiceData(id);
-        Loader.hide();
-        update();
-      }
+      subServiceModel = value;
+      value.list?.forEach((element) {print('subServiceModel ${element.title}');});
+      allSubServiceIssueList = subServiceModel.list ?? [];
+      paginatedSubServiceData(id);
+      Loader.hide();
+      update();
     }).onError((error, stackTrace) {
       Loader.hide();
 

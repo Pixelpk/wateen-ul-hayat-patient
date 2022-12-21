@@ -16,7 +16,7 @@ import 'model/data_model/categorylist_item_data_modal.dart';
 class CustomSearchDelegate extends SearchDelegate {
   CustomSearchDelegate({required this.categoryListItem});
 
-  final List<CategoryListItem?> categoryListItem;
+  final List<Services?> categoryListItem;
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -45,7 +45,7 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    List<CategoryListItem> matchQuery = [];
+    List<Services> matchQuery = [];
     for (var fruit in categoryListItem) {
       if ((fruit!.title!.toLowerCase()).contains(query.toLowerCase())) {
         matchQuery.add(fruit);
@@ -161,7 +161,7 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<CategoryListItem> matchQuery = [];
+    List<Services> matchQuery = [];
 
     for (var fruit in categoryListItem) {
       if ((fruit!.title!.toLowerCase()).contains(query.toLowerCase())) {

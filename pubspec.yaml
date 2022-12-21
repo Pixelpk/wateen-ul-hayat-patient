@@ -61,13 +61,12 @@ dependencies:
   auto_size_text: ^3.0.0
   country_picker: ^2.0.18
   material_floating_search_bar: ^0.3.7
+  collection: ^1.17.0
 
 
 
-
-
-
-
+dependency_overrides:
+  collection: ^1.17.0
 
 dev_dependencies:
   flutter_test:

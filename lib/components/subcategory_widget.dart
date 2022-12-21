@@ -11,7 +11,7 @@ import '../pages/home/presentation/controllers/book_service_provider_controller.
 import '../pages/home/presentation/controllers/home_tab_controller.dart';
 
 class SubcategoryWidget extends StatelessWidget {
-  final CategoryListItem categoryListItem;
+  final Services? categoryListItem;
 
   const SubcategoryWidget({Key? key, required this.categoryListItem})
       : super(key: key);
@@ -38,7 +38,7 @@ class SubcategoryWidget extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Text(categoryListItem.title ?? "",
+                child: Text(categoryListItem?.title ?? "",
                     maxLines: 2,
                     textAlign: TextAlign.start,
                     style: GoogleFonts.poppins().copyWith(
@@ -54,9 +54,8 @@ class SubcategoryWidget extends StatelessWidget {
                   var ctrl = Get.put(BookServiceProviderController());
 
                   ctrl.getLocation(
-                      categoryId: categoryListItem.categoryId,
-                      id: 152);
-                  print("The Provider Id is: " + categoryListItem.id.toString());
+                      categoryId: categoryListItem?.categoryId,
+                      id: categoryListItem?.id);
 
                   ctrl.update();
                 },
@@ -117,7 +116,7 @@ class SubcategoryWidget extends StatelessWidget {
           // )
 
           ReadMoreText(
-            categoryListItem.description ?? "",
+            categoryListItem?.description ?? "",
             style: TextStyle(
               color: Theme.of(context).primaryColorLight,
               fontSize: 14,

@@ -49,9 +49,7 @@ class HomeTab extends StatelessWidget {
                   Align(
                     alignment: Alignment.topCenter,
                     child: InkWell(
-                      onTap: (){
-
-                      },
+                      onTap: () {},
                       child: Image.asset(
                         "assets/images/logo.png",
                         width: Get.width * 0.25,
@@ -201,8 +199,10 @@ class HomeTab extends StatelessWidget {
                                           controller.allServiceIssueList[index];
                                       return InkWell(
                                           onTap: () async {
+                                            print(categoryListItem.toJson());
                                             controller.serviceSubTypeHitApi(
                                                 categoryListItem.id!);
+
                                             Get.to(() =>
                                                 SubCategoryView(index: index));
                                           },

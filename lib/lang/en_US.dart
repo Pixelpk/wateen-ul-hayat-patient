@@ -203,7 +203,7 @@ const Map<String, String> en_US = {
   STRING_AddFamilyMember: 'Add Family Member',
   STRING_AddCard: 'Add Card',
   STRING_CardList: 'Card List',
-  STRING_BookingId: 'Booking ID:',
+  STRING_BookingId: 'Booking No:',
   STRING_PerHour: 'Per Hour Price:',
   STRING_ItemPrice: 'Price:',
   STRING_StartDate: 'Start Date',
