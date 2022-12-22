@@ -52,7 +52,8 @@ class SubcategoryWidget extends StatelessWidget {
                 onTap: () {
                   print("Services called");
                   var ctrl = Get.put(BookServiceProviderController());
-
+                  print(categoryListItem!.categoryId);
+                  print(categoryListItem!.id);
                   ctrl.getLocation(
                       categoryId: categoryListItem?.categoryId,
                       id: categoryListItem?.id);

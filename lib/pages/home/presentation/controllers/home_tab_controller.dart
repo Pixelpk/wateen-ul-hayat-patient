@@ -254,7 +254,6 @@ class HomeTabController extends GetxController {
     APIRepository.SubserviceTypeListAPiCall(categoryId: id, page: 0)
         .then((value) {
       subServiceModel = value;
-      value.list?.forEach((element) {print('subServiceModel ${element.title}');});
       allSubServiceIssueList = subServiceModel.list ?? [];
       paginatedSubServiceData(id);
       Loader.hide();

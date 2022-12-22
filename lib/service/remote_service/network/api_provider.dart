@@ -255,9 +255,9 @@ class APIRepository {
           queryParameters: {
             categoryIdKey: categoryId,
             subCategoryIdKey: subCategoryId,
-            'lat': lat,
+           /* 'lat': lat,
             'long': lng,
-            'page': page
+            'page': page*/
           },
           options: Options(headers: {
             categoryIdKey: categoryId,

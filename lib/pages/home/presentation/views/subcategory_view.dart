@@ -39,7 +39,7 @@ class _SubCategoryViewState extends State<SubCategoryView> {
         MediaQuery.of(context).orientation == Orientation.portrait;
     return GetBuilder<HomeTabController>(
       builder: (controller) {
-
+      final list =   controller.subServiceModel.allServices;
         return Scaffold(
           backgroundColor: Color(0xffF5F5F5),
           appBar: DefaultAppBar(
@@ -58,7 +58,7 @@ class _SubCategoryViewState extends State<SubCategoryView> {
             ],
           ),
           body: DefaultTabController(
-            length: controller.allSubServiceIssueList.length,
+            length: controller.allSubServiceIssueList.length + 1,
             child: Column(
               children: [
                 Padding(
@@ -72,8 +72,7 @@ class _SubCategoryViewState extends State<SubCategoryView> {
                         showSearch(
                           context: context,
                           delegate: CustomSearchDelegate(
-                              categoryListItem:
-                              controller.allSubServiceIssueList[DefaultTabController.of(context)?.index ?? 0].services!),
+                              categoryListItem: list!),
                         );
                       },
                       leading: Icon(
@@ -93,13 +92,48 @@ class _SubCategoryViewState extends State<SubCategoryView> {
                       isScrollable: true,
                       labelColor: buttonColor,
                       unselectedLabelColor: buttonColor,
-                      tabs: [...controller.allSubServiceIssueList.map((e) =>  Tab(
+                      tabs: [Tab(
+                        text: 'All',
+                      ),...controller.allSubServiceIssueList.map((e) =>  Tab(
                         text: e.title,
                       )).toList(),]
                   ),
                 ),
                 Expanded(
-                    child: TabBarView(children:( [...controller.allSubServiceIssueList.map((e) =>  SingleChildScrollView(
+                    child: TabBarView(children:( [SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 20,
+                          ),
+                          ((list?.isEmpty ?? true) &&
+                              controller.isLoading == false)
+                              ? Container(
+                              margin: EdgeInsets.only(top: Get.height * 0.38),
+                              child: Center(
+                                  child: Text(
+                                    STRING_NoServiceFound.tr,
+                                    style: Theme.of(context).textTheme.subtitle1,
+                                  )))
+                              : ListView.builder(
+                              shrinkWrap: true,
+                              padding:
+                              EdgeInsets.symmetric(horizontal: hMargin),
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount:
+                              list?.length ?? 0,
+                              itemBuilder: (_, index) {
+                                return SubcategoryWidget(
+                                  categoryListItem: list![index],
+                                );
+                              }),
+                          SizedBox(
+                            height: 40,
+                          )
+                        ],
+                      ),
+                    ),...controller.allSubServiceIssueList.map((e) =>  SingleChildScrollView(
                         physics: BouncingScrollPhysics(),
                         child: Column(
                           children: [
