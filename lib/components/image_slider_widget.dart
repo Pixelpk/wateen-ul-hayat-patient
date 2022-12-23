@@ -128,34 +128,42 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
                     Positioned(
                       top: 0,
                       right: 0,
-                      child: Container(
-                        width: 80,
-                        height: 20,
-                        // margin: EdgeInsets.only(top: 12),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadiusDirectional.only(
-                            //  topStart: Radius.circular(20),
-                            topEnd: Radius.circular(20),
-                            bottomStart: Radius.circular(20),
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Container(
+                          width: 80,
+                          height: 20,
+
+                          // margin: EdgeInsets.only(top: 12),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadiusDirectional.only(
+                              //  topStart: Radius.circular(20),
+                              topEnd: Radius.circular(20),
+                              bottomStart: Radius.circular(20),
+                            ),
+
+                            // boxShadow: [
+                            //   BoxShadow(
+                            //     color: Color(0x14000000),
+                            //     blurRadius: 24,
+                            //     offset: Offset(0, 12),
+                            //   ),
+                            // ],
+                            color: Colors.white,
                           ),
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     color: Color(0x14000000),
-                          //     blurRadius: 24,
-                          //     offset: Offset(0, 12),
-                          //   ),
-                          // ],
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                          child: Text(STRING_feature.tr,
+                          child: Center(
+                            child: Text(
+                              STRING_feature.tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
                                     color: primaryColor,
                                     fontWeight: FontWeight.w500,
-                                  )),
+                                  ),
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -166,7 +174,6 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
             options: CarouselOptions(
               aspectRatio: 2 / 0.8,
               viewportFraction: 1.0,
-
               initialPage: 0,
               enableInfiniteScroll: true,
               reverse: false,

@@ -77,7 +77,7 @@ const Map<String, String> ar_DZ = {
   STRING_Home: "الرئیسیة",
   STRING_MyBookings: "حجوزاتي",
   STRING_MyProfile: "ملفي الشخصي",
-  STRING_Book: "كتاب",
+  STRING_Book: "احجز",
   STRING_Past: "الماضي",
   STRING_fullName: "الاسم الكامل",
   STRING_EmailID: "الایمیل",
