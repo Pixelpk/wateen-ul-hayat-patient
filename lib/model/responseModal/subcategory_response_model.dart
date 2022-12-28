@@ -52,3 +52,19 @@ class SubCategoryListResponseModal {
     return data;
   }
 }
+
+
+class SubCateLocalData{
+  List<String?> tabList;
+  bool showAll;
+  List<List<Services>?> subServices;
+
+  factory SubCateLocalData.empty() => SubCateLocalData(tabList: [], showAll: false, subServices: []);
+
+  SubCateLocalData({
+    required this.tabList,
+    required this.showAll,
+    required this.subServices,
+  });
+
+}

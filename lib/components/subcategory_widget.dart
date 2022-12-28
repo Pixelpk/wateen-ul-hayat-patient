@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,8 +15,7 @@ import '../pages/home/presentation/controllers/home_tab_controller.dart';
 class SubcategoryWidget extends StatelessWidget {
   final Services? categoryListItem;
 
-  const SubcategoryWidget({Key? key, required this.categoryListItem})
-      : super(key: key);
+  const SubcategoryWidget({Key? key, required this.categoryListItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +50,49 @@ class SubcategoryWidget extends StatelessWidget {
               ),
               hGap(12),
               InkWell(
-                onTap: () {
-                  print("Services called");
+                onTap: () async {
+                  int qty = 1;
+                  await showDialog<void>(
+                    context: context,
+                    builder: (BuildContext context) => StatefulBuilder(
+                      builder: (context, state) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                          content: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Text(
+                                categoryListItem?.description ?? "",
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
+                              SizedBox(height: 10,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  minus(),
+                                  Text('$qty',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.poppins().copyWith(
+                                        color: Theme.of(context).primaryColorDark,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 13,
+                                      )),
+                                  plus()
+                                ],
+                              )
+                            ],
+                          ),
+                          contentPadding: const EdgeInsets.all(26),
+                          title: Text(categoryListItem?.title ?? ""),
+                        );
+                      }
+                    ),
+                  );
+
+                  /*       print("Services called");
                   var ctrl = Get.put(BookServiceProviderController());
                   print(categoryListItem!.categoryId);
                   print(categoryListItem!.id);
@@ -58,7 +100,7 @@ class SubcategoryWidget extends StatelessWidget {
                       categoryId: categoryListItem?.categoryId,
                       id: categoryListItem?.id);
 
-                  ctrl.update();
+                  ctrl.update();*/
                 },
                 child: Container(
                   width: 90,
@@ -128,10 +170,7 @@ class SubcategoryWidget extends StatelessWidget {
             trimMode: TrimMode.Line,
             trimCollapsedText: ' View More',
             trimExpandedText: ' View Less',
-            lessStyle: TextStyle(
-                fontSize: 14,
-                color: primaryColor,
-                decorationStyle: TextDecorationStyle.dashed),
+            lessStyle: TextStyle(fontSize: 14, color: primaryColor, decorationStyle: TextDecorationStyle.dashed),
             moreStyle: TextStyle(
               fontSize: 14,
               color: primaryColor,

@@ -39,7 +39,6 @@ class _SubCategoryViewState extends State<SubCategoryView> {
         MediaQuery.of(context).orientation == Orientation.portrait;
     return GetBuilder<HomeTabController>(
       builder: (controller) {
-      final list =   controller.subServiceModel.allServices;
         return Scaffold(
           backgroundColor: Color(0xffF5F5F5),
           appBar: DefaultAppBar(
@@ -58,7 +57,7 @@ class _SubCategoryViewState extends State<SubCategoryView> {
             ],
           ),
           body: DefaultTabController(
-            length: controller.allSubServiceIssueList.length + 1,
+            length: controller.subCateLocalData.tabList.length,
             child: Column(
               children: [
                 Padding(
@@ -69,10 +68,11 @@ class _SubCategoryViewState extends State<SubCategoryView> {
                         borderRadius: BorderRadius.circular(20)),
                     child: ListTile(
                       onTap: () {
+                      final list =   controller.subCateLocalData.subServices.expand((element) => element!.toList()).toList();
                         showSearch(
                           context: context,
                           delegate: CustomSearchDelegate(
-                              categoryListItem: list!),
+                              categoryListItem: list),
                         );
                       },
                       leading: Icon(
@@ -87,28 +87,26 @@ class _SubCategoryViewState extends State<SubCategoryView> {
                   padding: const EdgeInsets.only(left: 5, bottom: 5),
                   child: TabBar(
                       indicator: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(15),
                           border: Border.all(color: buttonColor)),
                       isScrollable: true,
+                      indicatorSize: TabBarIndicatorSize.tab,
                       labelColor: buttonColor,
                       unselectedLabelColor: buttonColor,
-                      tabs: [Tab(
-                        text: 'All',
-                      ),...controller.allSubServiceIssueList.map((e) =>  Tab(
-                        text: e.title,
-                      )).toList(),]
+                      tabs: controller.subCateLocalData.tabList.map((e) => Tab(
+                        text: e,
+                      )).toList()
                   ),
                 ),
                 Expanded(
-                    child: TabBarView(children:( [SingleChildScrollView(
+                    child: TabBarView(children: controller.subCateLocalData.subServices.map((e) =>   SingleChildScrollView(
                       physics: BouncingScrollPhysics(),
                       child: Column(
                         children: [
                           SizedBox(
                             height: 20,
                           ),
-                          ((list?.isEmpty ?? true) &&
-                              controller.isLoading == false)
+                          ((e!.isEmpty) && controller.isLoading == false)
                               ? Container(
                               margin: EdgeInsets.only(top: Get.height * 0.38),
                               child: Center(
@@ -122,10 +120,10 @@ class _SubCategoryViewState extends State<SubCategoryView> {
                               EdgeInsets.symmetric(horizontal: hMargin),
                               physics: NeverScrollableScrollPhysics(),
                               itemCount:
-                              list?.length ?? 0,
+                              e.length,
                               itemBuilder: (_, index) {
                                 return SubcategoryWidget(
-                                  categoryListItem: list![index],
+                                  categoryListItem: e[index],
                                 );
                               }),
                           SizedBox(
@@ -133,40 +131,7 @@ class _SubCategoryViewState extends State<SubCategoryView> {
                           )
                         ],
                       ),
-                    ),...controller.allSubServiceIssueList.map((e) =>  SingleChildScrollView(
-                        physics: BouncingScrollPhysics(),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 20,
-                            ),
-                            (controller.allSubServiceIssueList.isEmpty &&
-                                controller.isLoading == false)
-                                ? Container(
-                                margin: EdgeInsets.only(top: Get.height * 0.38),
-                                child: Center(
-                                    child: Text(
-                                      STRING_NoServiceFound.tr,
-                                      style: Theme.of(context).textTheme.subtitle1,
-                                    )))
-                                : ListView.builder(
-                                shrinkWrap: true,
-                                padding:
-                                EdgeInsets.symmetric(horizontal: hMargin),
-                                physics: NeverScrollableScrollPhysics(),
-                                itemCount:
-                                e.services?.length ?? 0,
-                                itemBuilder: (_, index) {
-                                  return SubcategoryWidget(
-                                    categoryListItem: e.services![index],
-                                  );
-                                }),
-                            SizedBox(
-                              height: 40,
-                            )
-                          ],
-                        ),
-                      ),).toList()]),)
+                    ),).toList())
                 )
               ],
             ),

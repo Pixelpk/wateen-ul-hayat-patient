@@ -49,6 +49,9 @@ class HomeTabController extends GetxController {
   CategoryListItem? itemSelectedSubServiceType;
   List<DropdownMenuItem<CategoryListItem>>? dropdownMenuItemsSubServiceType;
   List<CategoryListItem> allSubServiceIssueList = [];
+  List<Services> allServiceList = [];
+
+  SubCateLocalData subCateLocalData = SubCateLocalData.empty();
 
   bool viewServiceDialog = false;
 
@@ -214,8 +217,17 @@ class HomeTabController extends GetxController {
                   .then((value) {
                 if (value != null) {
                   subServiceModel = value;
-
                   allSubServiceIssueList.addAll(subServiceModel.list ?? []);
+                  allServiceList.addAll(subServiceModel.allServices ?? []);
+                  List<String?> tabList = allSubServiceIssueList.map((e)=> e.title).toList();
+                  tabList.removeWhere((element) => element==null);
+                  bool showAll = tabList.length > 1;
+                  List<List<Services>?> subServices = allSubServiceIssueList.map((element) => element.services).toList();
+                  if(showAll){
+                    tabList.insert(0, 'All');
+                    subServices.insert(0, allServiceList);
+                  }
+                  subCateLocalData = SubCateLocalData(tabList: tabList, showAll: showAll, subServices: subServices);
                   Loader.hide();
                   isSubLoading = false;
                   update();
@@ -255,6 +267,17 @@ class HomeTabController extends GetxController {
         .then((value) {
       subServiceModel = value;
       allSubServiceIssueList = subServiceModel.list ?? [];
+      allServiceList = subServiceModel.allServices ?? [];
+      List<String?> tabList = allSubServiceIssueList.map((e) => e.title).toList();
+      tabList.removeWhere((element) => element==null);
+      bool showAll = tabList.length > 1;
+      List<List<Services>?> subServices = allSubServiceIssueList.map((element) => element.services!.toList()).toList();
+      if(showAll){
+        tabList.insert(0, 'All');
+        subServices.insert(0, allServiceList);
+      }
+      subCateLocalData = SubCateLocalData(tabList: tabList, showAll: showAll, subServices: subServices);
+
       paginatedSubServiceData(id);
       Loader.hide();
       update();

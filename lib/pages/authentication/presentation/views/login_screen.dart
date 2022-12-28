@@ -175,7 +175,7 @@ class LoginScreen extends StatelessWidget {
                                         showUnderLineBorder: true,
                                         isFill: false,
                                         hint: STRING_mobileNo.tr,
-                                        maxLength: 9,
+                                        maxLength: 10,
                                         prefixWidget: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
