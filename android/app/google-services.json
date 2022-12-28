@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "919211997400",
+    "project_id": "swift-care-3a166",
+    "storage_bucket": "swift-care-3a166.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919211997400:android:f18d5d4e4a058996d17fad",
+        "android_client_info": {
+          "package_name": "com.app.swift_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919211997400-sq04ti5gl9v27osjjtrudoa3k388n3op.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBms_Z_Hn10yo7z-Yqrw-n-EMSZeQRjm7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "919211997400-sq04ti5gl9v27osjjtrudoa3k388n3op.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919211997400:android:d5e7b56ddc007eacd17fad",
+        "android_client_info": {
+          "package_name": "com.app.swift_care_provider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919211997400-sq04ti5gl9v27osjjtrudoa3k388n3op.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBms_Z_Hn10yo7z-Yqrw-n-EMSZeQRjm7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "919211997400-sq04ti5gl9v27osjjtrudoa3k388n3op.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
