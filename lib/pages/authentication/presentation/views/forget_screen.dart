@@ -151,7 +151,7 @@ class ForgetScreen extends StatelessWidget {
                 child: SvgPicture.asset("assets/icons/back_arrow.svg")),
           ),
           Center(
-              child: imageAsset("assets/icons/ic_logo.png", height: DIMENS_70)),
+              child: imageAsset("assets/icons/logo.png", height: DIMENS_70)),
         ],
       ),
     );

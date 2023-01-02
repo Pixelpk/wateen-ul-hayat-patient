@@ -70,7 +70,6 @@ class ForgotController extends GetxController {
     APIRepository.forgetApiCall(dataBody: loginReq).then((value) {
       Loader.hide();
       Get.back();
-
     }).onError((error, stackTrace) {
       Loader.hide();
       snackBar(error);
