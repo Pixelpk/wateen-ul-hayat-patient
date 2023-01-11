@@ -19,7 +19,7 @@ class _TempState extends State<Temp> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               cbtnElevatedButton(onPressed: () {}, label: elevatedButton),
               cbtnElevatedButtonWithIcon(
                   onPressed: () {}, label: elevatedButton, icon: Icons.ac_unit),

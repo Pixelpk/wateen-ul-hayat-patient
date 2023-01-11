@@ -1,10 +1,8 @@
 // Package imports:
 import 'package:dio/adapter.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../../export.dart';
-
 // Project imports:
 
 const _defaultConnectTimeout = Duration.millisecondsPerMinute;
@@ -118,20 +116,30 @@ class DioClient {
       CancelToken? cancelToken,
       ProgressCallback? onSendProgress,
       ProgressCallback? onReceiveProgress,
-      bool?
-          skipAuth // api required Authorization token then pass skip auth false, skipAuth false meanse token not skip
+      bool?skipAuth // api required Authorization token then pass skip auth false, skipAuth false meanse token not skip
       }) async {
     // If Api no required Authorization token , pass skip auth true (means authorization skip)
     try {
       debugPrint("authorization============ $skipAuth");
       if (skipAuth == false) {
         var token = await storage.read(LOCALKEY_token);
+        debugPrint("token============ $token");
         if (token != null) {
           if (options == null) {
             options = Options(headers: {
               "Authorization": "Bearer $token",
               'lang': (storage.read(LOCALKEY_english) == null ||
                       storage.read(LOCALKEY_english) == true)
+                  ? 'en'
+                  : 'ar'
+            });
+          }
+        }else{
+          if (options == null) {
+            options = Options(headers: {
+              "Authorization": "Bearer DtpUzZl6Z7kQAn3aKgpo6vtyGUTQkmsj",
+              'lang': (storage.read(LOCALKEY_english) == null ||
+                  storage.read(LOCALKEY_english) == true)
                   ? 'en'
                   : 'ar'
             });

@@ -1,9 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:swift_care/pages/bookings/presentation/booking_info_screen.dart';
-import 'package:swift_care/pages/bookings/presentation/controller/booking_info_controller.dart';
-
 import '../export.dart';
 import '../pages/home/presentation/controllers/bottom_navigation_controller.dart';
 import '../pages/home/presentation/views/bottom_navigation_screen.dart';
@@ -33,7 +30,6 @@ class PushNotificationsManager {
       _initialized = true;
       getIntialMessage();
       onMesage();
-
       onAppOpened();
     }
   }

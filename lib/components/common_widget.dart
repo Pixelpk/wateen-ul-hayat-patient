@@ -1,16 +1,17 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../export.dart';
 import '../service/remote_service/network/endpoint.dart';
+
 
 Widget vGap(double height) => SizedBox(height: height);
 
 Widget hGap(double width) => SizedBox(width: width);
 
 setFileImage(
-    {required String url, double? height, double? width, double? radius}) {
+    {
+      required String url, double? height, double? width, double? radius}) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(radius ?? 100),
     child: Image.file(new File(url),
@@ -33,7 +34,8 @@ circleImageNetWork({imageurl, height, width, radius, bool isMember = false}) {
         imageErrorBuilder: imageErrorBuilder(
           isMember,
         ),
-        image: imageurl != null ? imageurl : ""),
+        image: imageurl != null ? imageurl : "",
+    ),
   );
 }
 
@@ -121,6 +123,7 @@ decorationBox(
 
 class CountryCodeWidget extends StatelessWidget {
   String selectedCountryCode = '+966';
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

@@ -1,19 +1,9 @@
-import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-import 'package:readmore/readmore.dart';
 import 'package:swift_care/components/default_app_bar.dart';
 import 'package:swift_care/components/subcategory_widget.dart';
-import 'package:swift_care/constants/colors.dart';
 import 'package:swift_care/export.dart';
-import 'package:swift_care/model/data_model/categorylist_item_data_modal.dart';
 import 'package:swift_care/pages/cart/presentation/cart_screen.dart';
 import 'package:swift_care/pages/cart/presentation/controller/cart_controller.dart';
-
-import '../../../../components/inputfield_widget.dart';
 import '../../../../search_delegate.dart';
 import '../controllers/home_tab_controller.dart';
 

@@ -1,14 +1,8 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pinput/pin_put/pin_put.dart';
 import 'package:swift_care/components/inputfield_widget.dart';
 import 'package:swift_care/pages/authentication/presentation/controllers/forgot_controller.dart';
-import 'package:swift_care/pages/authentication/presentation/controllers/loginController.dart';
-import 'package:swift_care/pages/authentication/presentation/controllers/signup_controller.dart';
-import 'package:swift_care/pages/authentication/presentation/views/password_reset_success_screen.dart';
 import 'package:swift_care/utils/projectutils/prefic_widget.dart';
-
 import '../../../../export.dart';
 
 class ForgetScreen extends StatelessWidget {
@@ -17,112 +11,114 @@ class ForgetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var safePadding = MediaQuery.of(context).padding.top;
-
     return GetBuilder<ForgotController>(
-        init: ForgotController(),
-        builder: (controller) {
-          return Scaffold(
-              body: SafeArea(
+      init: ForgotController(),
+      builder: (controller) {
+        return Scaffold(
+          body: SafeArea(
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Container(
-                  height: Get.height - safePadding,
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          vGap(DIMENS_20),
-                          _imageView(),
-                          vGap(DIMENS_60),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: DIMENS_40, horizontal: DIMENS_32),
-                            margin: EdgeInsets.symmetric(
-                                horizontal: DIMENS_32, vertical: DIMENS_24),
-                            decoration: loginDeco,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  alignment: AlignmentDirectional.centerStart,
-                                  child: text(
-                                    STRING_forgotPswd.tr,
-                                    maxLines: 1,
-                                    fontSize: FONT_22,
-                                    fontWeight: FontWeight.bold,
-                                    textAlign: TextAlign.center,
-                                  ),
+                height: Get.height - safePadding,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: <Widget>[
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        vGap(DIMENS_20),
+                        _imageView(),
+                        vGap(DIMENS_60),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: DIMENS_40, horizontal: DIMENS_32),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: DIMENS_32, vertical: DIMENS_24),
+                          decoration: loginDeco,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                alignment: AlignmentDirectional.centerStart,
+                                child: text(
+                                  STRING_forgotPswd.tr,
+                                  maxLines: 1,
+                                  fontSize: FONT_22,
+                                  fontWeight: FontWeight.bold,
+                                  textAlign: TextAlign.center,
                                 ),
-                                _divider(),
-                                vGap(DIMENS_16),
-                                Form(
-                                    key: formGlobalKey,
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
-                                    child: InputFieldWidget(
-                                        controller: controller.mobileController,
-                                        hint: STRING_mobileNo.tr,
-                                        isFill: false,
-                                        showUnderLineBorder: true,
-                                        prefixWidget: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            countryCode(
-                                                controller: controller,
-                                                bool: true),
-                                            Container(
-                                              margin:
-                                                  EdgeInsetsDirectional.only(
-                                                      end: 10),
-                                              width: 1,
-                                              height: 20,
-                                              color: Color(0xffC2C2C2),
+                              ),
+                              _divider(),
+                              vGap(DIMENS_16),
+                              Form(
+                                  key: formGlobalKey,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  child: InputFieldWidget(
+                                      controller: controller.mobileController,
+                                      hint: STRING_mobileNo.tr,
+                                      isFill: false,
+                                      showUnderLineBorder: true,
+                                      prefixWidget: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          countryCode(
+                                              controller: controller,
+                                              bool: true),
+                                          Container(
+                                            margin: EdgeInsetsDirectional.only(
+                                                end: 10,
                                             ),
-                                          ],
-                                        ),
-                                        validator: (value) {
-                                          if (value!.isEmpty)
-                                            return STRING_EnterMobile.tr;
-                                          else if (value.length > 0 &&
-                                              !GetUtils.isPhoneNumber(value))
-                                            return STRING_EnterValidMobile.tr;
-                                          else if (value.length < 8 &&
-                                              !GetUtils.isPhoneNumber(value))
-                                            return STRING_EnterValidMobile.tr;
-                                          else
-                                            return null;
-                                        },
-                                        keyboardType: TextInputType.phone,
-                                        focusNode: controller.mobileFocusNode)),
-                                vGap(DIMENS_16),
-                                cbtnElevatedButton(
-                                    onPressed: () {
-                                      if (formGlobalKey.currentState!
-                                          .validate()) {
-                                        controller.hitForgetAPI();
-                                      }
-                                    },
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(DIMENS_8)),
-                                    height: DIMENS_50,
-                                    label: STRING_sendTxt.tr,
-                                    backgroundColor: buttonColor),
-                              ],
-                            ),
+                                            width: 1,
+                                            height: 20,
+                                            color: Color(0xffC2C2C2),
+                                          ),
+                                        ],
+                                      ),
+                                      validator: (value) {
+                                        if (value!.isEmpty)
+                                          return STRING_EnterMobile.tr;
+                                        else if (value.length > 0 &&
+                                            !GetUtils.isPhoneNumber(value))
+                                          return STRING_EnterValidMobile.tr;
+                                        else if (value.length < 8 &&
+                                            !GetUtils.isPhoneNumber(value))
+                                          return STRING_EnterValidMobile.tr;
+                                        else
+                                          return null;
+                                      },
+                                      keyboardType: TextInputType.phone,
+                                      focusNode: controller.mobileFocusNode)),
+                              vGap(DIMENS_16),
+                              cbtnElevatedButton(
+                                onPressed: () {
+                                  if (formGlobalKey.currentState!.validate()) {
+                                    controller.hitForgetAPI();
+                                  }
+                                },
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.circular(DIMENS_8)),
+                                height: DIMENS_50,
+                                label: STRING_sendTxt.tr,
+                                backgroundColor: buttonColor,
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      _bottomImageView(),
-                    ],
-                  )),
+                        ),
+                      ],
+                    ),
+                    _bottomImageView(),
+                  ],
+                ),
+              ),
             ),
-          ));
-        });
+          ),
+        );
+      },
+    );
   }
 
   Widget _divider() {
@@ -150,8 +146,7 @@ class ForgetScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(5.0),
                 child: SvgPicture.asset("assets/icons/back_arrow.svg")),
           ),
-          Center(
-              child: imageAsset("assets/icons/logo.png", height: DIMENS_70)),
+          Center(child: imageAsset("assets/icons/logo.png", height: DIMENS_70)),
         ],
       ),
     );

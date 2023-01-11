@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:swift_care/components/default_app_bar.dart';
 import 'package:swift_care/pages/home/presentation/controllers/bottom_navigation_controller.dart';
@@ -52,48 +51,532 @@ class CartScreen extends StatelessWidget {
     return controller.cartServiceList.isNotEmpty
         ? SingleChildScrollView(
             child: Container(
-            margin:
-                EdgeInsets.symmetric(horizontal: hMargin, vertical: vMargin),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: controller.cartServiceList.length,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x19000000),
-                            blurRadius: 12,
-                            offset: Offset(0, 4),
-                          ),
-                        ],
-                        color: Colors.white,
-                      ),
-                      margin: EdgeInsets.only(bottom: 12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: Get.width,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                                topRight: Radius.circular(10),
-                                bottomLeft: Radius.circular(0),
-                                bottomRight: Radius.circular(0),
+              margin: EdgeInsets.symmetric(horizontal: hMargin, vertical: vMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.cartServiceList.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x19000000),
+                              blurRadius: 12,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
+                          color: Colors.white,
+                        ),
+                        margin: EdgeInsets.only(bottom: 12),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: Get.width,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10),
+                                  bottomLeft: Radius.circular(0),
+                                  bottomRight: Radius.circular(0),
+                                ),
+                                color: buttonColor,
                               ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                STRING_ServiceDetails.tr,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            vGap(6),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: hMargin),
+                              child: Text(
+                                controller?.cartServiceList[index]?.name ?? "",
+                                style: TextStyle(
+                                  color: buttonColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            vGap(6),
+                            Container(
+                              height: 1,
+                              width: Get.width,
+                              color: isDarkMode()
+                                  ? dDropDownColor
+                                  : lDropDownColor,
+                            ),
+                            vGap(6),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: hMargin),
+                              child: Row(
+                                children: <Widget>[
+                                  Text(
+                                    '${STRING_gender.tr}: ',
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColorDark,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Text(
+                                    controller.cartServiceList[index].gender ??
+                                        "",
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    '${STRING_price.tr}: ',
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColorDark,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${STRING_CURRENCY.tr} ${controller.cartServiceList[index].price ?? ""}',
+                                    style: TextStyle(
+                                      color: buttonColor,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            vGap(6),
+                            Container(
+                              width: Get.width,
+                              height: 20,
+                              color: isDarkMode()
+                                  ? dFillColorLight
+                                  : lFillColorLight,
+                            ),
+                            vGap(6),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: hMargin),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    '${STRING_patientName.tr}',
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColorDark,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    controller.cartServiceList[index]
+                                                .familyName == ""
+                                        ? STRING_Myselff.tr
+                                        : '${controller.cartServiceList[index].familyName}',
+                                    style: TextStyle(
+                                      color: buttonColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            vGap(6),
+                            Container(
+                              height: 1,
+                              width: Get.width,
+                              color: isDarkMode()
+                                  ? dDropDownColor
+                                  : lDropDownColor,
+                            ),
+                            vGap(6),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: hMargin),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    '${STRING_StartDate.tr}',
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColorDark,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    ' ${intl.DateFormat("dd-MM-yyyy").format(DateTime.parse(controller.cartServiceList[index].startTime!))}',
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            vGap(6),
+                            Container(
+                              height: 1,
+                              width: Get.width,
+                              color: isDarkMode()
+                                  ? dDropDownColor
+                                  : lDropDownColor,
+                            ),
+                            vGap(6),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: hMargin),
+                              child: Row(
+                                children: <Widget>[
+                                  Text(
+                                    '${STRING_EndDate.tr}',
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColorDark,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    '${intl.DateFormat("dd-MM-yyyy").format(DateTime.parse(controller.cartServiceList[index].endTime!))}',
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            vGap(6),
+                            Container(
+                              height: 1,
+                              width: Get.width,
+                              color: isDarkMode()
+                                  ? dDropDownColor
+                                  : lDropDownColor,
+                            ),
+                            vGap(6),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: hMargin),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    STRING_timeslot.tr,
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColorDark,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Directionality(
+                                    textDirection: TextDirection.ltr,
+                                    child: Text(
+                                      '${intl.DateFormat("hh:mm a").format(DateTime.parse(controller.cartServiceList[index].startTime!))} - ${intl.DateFormat("hh:mm a").format(DateTime.parse(controller.cartServiceList[index].endTime!))}',
+                                      style: TextStyle(
+                                        color:
+                                            Theme.of(context).primaryColorLight,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Visibility(
+                              visible: controller.cartServiceList[index]
+                                          .slotBookingType ==
+                                      1
+                                  ? true
+                                  : false,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  vGap(6),
+                                  Container(
+                                    height: 1,
+                                    width: Get.width,
+                                    color: isDarkMode()
+                                        ? dDropDownColor
+                                        : lDropDownColor,
+                                  ),
+                                  vGap(6),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: hMargin),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          STRING_Days.tr,
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .primaryColorDark,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Spacer(),
+                                        Text(
+                                          controller.cartServiceList[index]?.difference.toString() ?? "0",
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .primaryColorLight,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  vGap(6),
+                                  Container(
+                                    height: 1,
+                                    width: Get.width,
+                                    color: isDarkMode()
+                                        ? dDropDownColor
+                                        : lDropDownColor,
+                                  ),
+                                  vGap(6),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(horizontal: hMargin),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text(
+                                          STRING_Status.tr,
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .primaryColorDark,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Spacer(),
+                                        text(STRING_Subscription.tr,
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: FONT_14,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            vGap(30),
+                            InkWell(
+                              onTap: () {
+                                controller.deleteItem(
+                                    controller.cartServiceList[index].id ?? 0);
+
+                                controller.deleteSlotItem(
+                                    controller.slotServiceList[index].id ?? 0);
+
+                                controller.hitPostCartApi();
+                              },
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Container(
+                                  width: 130,
+                                  height: 25,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Theme.of(context).primaryColorDark,
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    STRING_Delete.tr,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            vGap(16),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  vGap(30),
+
+                  ///------------- total section
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x19000000),
+                          blurRadius: 12,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                      color: Color(0xffe5e5e5),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: hMargin),
+                          child: Row(
+                            children: [
+                              Text(
+                                STRING_SubTotal.tr,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(Get.context!).primaryColorDark,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Spacer(),
+                              Text(
+                                '${STRING_CURRENCY.tr} ${controller.cartTotal}',
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(Get.context!).primaryColorDark,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        vGap(12),
+                        Container(
+                          height: 1,
+                          width: Get.width,
+                          color: Color(0xffD9D9D9),
+                        ),
+                        vGap(12),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: hMargin),
+                          child: Row(
+                            children: [
+                              Text(
+                                STRING_VAT.tr,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(Get.context!).primaryColorDark,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Spacer(),
+                              Text(
+                                '${STRING_CURRENCY.tr} ${double.parse(controller.subtotal.toStringAsFixed(2))}',
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(Get.context!).primaryColorDark,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        vGap(12),
+                        Container(
+                          height: 1,
+                          width: Get.width,
+                          color: Color(0xffD9D9D9),
+                        ),
+                        vGap(12),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: hMargin),
+                          child: Row(
+                            children: [
+                              Text(
+                                STRING_TOTAL.tr,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(Get.context!).primaryColorDark,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Spacer(),
+                              Text(
+                                '${STRING_CURRENCY.tr} ${getTotalAmount(controller)}',
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(Get.context!).primaryColorDark,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  vGap(30),
+
+                  ///-------------- Add More button
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          var cotroller =
+                              Get.put(BookServiceProviderController());
+                          var cotrollerr =
+                              Get.put(BookServiceProviderController());
+                          cotroller.updateCurrentTabIndex(1);
+                          cotrollerr.hitGetUserProfileAPI(
+                              controller.cartServiceList[0].providerId);
+                          cotrollerr.servicesListHitApi(
+                              controller.cartServiceList[0].providerId ?? 0);
+                          Get.to(BookServiceProvider(
+                              controller.cartServiceList[0].providerId));
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.add_circle,
                               color: buttonColor,
                             ),
-                            alignment: Alignment.center,
+                            hGap(4),
+                            text('$STRING_ADD_MORE'.tr,
+                                color: buttonColor, fontSize: 16.0),
+                          ],
+                        ),
+                      ),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          controller.querySlotData(id);
+                        },
+                        child: Container(
+                          width: 180,
+                          height: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color(0x19000000),
+                                blurRadius: 12,
+                                offset: Offset(0, 6),
+                              ),
+                            ],
+                            color: buttonColor,
+                          ),
+                          child: Center(
                             child: Text(
-                              STRING_ServiceDetails.tr,
-                              textAlign: TextAlign.center,
+                              STRING_confirmBooking.tr,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -101,491 +584,16 @@ class CartScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          vGap(6),
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: hMargin),
-                            child: Text(
-                              controller?.cartServiceList[index]?.name ?? "",
-                              style: TextStyle(
-                                color: buttonColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                          vGap(6),
-                          Container(
-                            height: 1,
-                            width: Get.width,
-                            color:
-                                isDarkMode() ? dDropDownColor : lDropDownColor,
-                          ),
-                          vGap(6),
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: hMargin),
-                            child: Row(
-                              children: [
-                                Text(
-                                  '${STRING_gender.tr}: ',
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColorDark,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  controller.cartServiceList[index].gender ??
-                                      "",
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColorLight,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                Spacer(),
-                                Text(
-                                  '${STRING_price.tr}: ',
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColorDark,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  '${STRING_CURRENCY.tr} ${controller.cartServiceList[index].price ?? ""}',
-                                  style: TextStyle(
-                                    color: buttonColor,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          vGap(6),
-                          Container(
-                            width: Get.width,
-                            height: 20,
-                            color: isDarkMode()
-                                ? dFillColorLight
-                                : lFillColorLight,
-                          ),
-                          vGap(6),
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: hMargin),
-                            child: Row(
-                              children: [
-                                Text(
-                                  '${STRING_patientName.tr}',
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColorDark,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Spacer(),
-                                Text(
-                                  controller.cartServiceList[index]
-                                              .familyName ==
-                                          ""
-                                      ? STRING_Myselff.tr
-                                      : '${controller.cartServiceList[index].familyName}',
-                                  style: TextStyle(
-                                    color: buttonColor,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          vGap(6),
-                          Container(
-                            height: 1,
-                            width: Get.width,
-                            color:
-                                isDarkMode() ? dDropDownColor : lDropDownColor,
-                          ),
-                          vGap(6),
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: hMargin),
-                            child: Row(
-                              children: [
-                                Text(
-                                  '${STRING_StartDate.tr}',
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColorDark,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Spacer(),
-                                Text(
-                                  ' ${intl.DateFormat("dd-MM-yyyy").format(DateTime.parse(controller.cartServiceList[index].startTime!))}',
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColorLight,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          vGap(6),
-                          Container(
-                            height: 1,
-                            width: Get.width,
-                            color:
-                                isDarkMode() ? dDropDownColor : lDropDownColor,
-                          ),
-                          vGap(6),
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: hMargin),
-                            child: Row(
-                              children: [
-                                Text(
-                                  '${STRING_EndDate.tr}',
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColorDark,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Spacer(),
-                                Text(
-                                  ' ${intl.DateFormat("dd-MM-yyyy").format(DateTime.parse(controller.cartServiceList[index].endTime!))}',
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColorLight,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          vGap(6),
-                          Container(
-                            height: 1,
-                            width: Get.width,
-                            color:
-                                isDarkMode() ? dDropDownColor : lDropDownColor,
-                          ),
-                          vGap(6),
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: hMargin),
-                            child: Row(
-                              children: [
-                                Text(
-                                  STRING_timeslot.tr,
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColorDark,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Spacer(),
-                                Directionality(
-                                  textDirection: TextDirection.ltr,
-                                  child: Text(
-                                    '${intl.DateFormat("hh:mm a").format(DateTime.parse(controller.cartServiceList[index].startTime!))} - ${intl.DateFormat("hh:mm a").format(DateTime.parse(controller.cartServiceList[index].endTime!))}',
-                                    style: TextStyle(
-                                      color:
-                                          Theme.of(context).primaryColorLight,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Visibility(
-                            visible: controller.cartServiceList[index]
-                                        .slotBookingType ==
-                                    1
-                                ? true
-                                : false,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                vGap(6),
-                                Container(
-                                  height: 1,
-                                  width: Get.width,
-                                  color: isDarkMode()
-                                      ? dDropDownColor
-                                      : lDropDownColor,
-                                ),
-                                vGap(6),
-                                Container(
-                                  margin:
-                                      EdgeInsets.symmetric(horizontal: hMargin),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        STRING_Days.tr,
-                                        style: TextStyle(
-                                          color: Theme.of(context)
-                                              .primaryColorDark,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Spacer(),
-                                      Text(
-                                        controller.cartServiceList[index]
-                                                ?.difference
-                                                .toString() ??
-                                            "0",
-                                        style: TextStyle(
-                                          color: Theme.of(context)
-                                              .primaryColorLight,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                vGap(6),
-                                Container(
-                                  height: 1,
-                                  width: Get.width,
-                                  color: isDarkMode()
-                                      ? dDropDownColor
-                                      : lDropDownColor,
-                                ),
-                                vGap(6),
-                                Container(
-                                  margin:
-                                      EdgeInsets.symmetric(horizontal: hMargin),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        STRING_Status.tr,
-                                        style: TextStyle(
-                                          color: Theme.of(context)
-                                              .primaryColorDark,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Spacer(),
-                                      text(STRING_Subscription.tr,
-                                          color: Colors.green,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: FONT_14),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          vGap(30),
-                          InkWell(
-                            onTap: () {
-                              controller.deleteItem(
-                                  controller.cartServiceList[index].id ?? 0);
-
-                              controller.deleteSlotItem(
-                                  controller.slotServiceList[index].id ?? 0);
-
-                              controller.hitPostCartApi();
-                            },
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Container(
-                                width: 130,
-                                height: 25,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Theme.of(context).primaryColorDark,
-                                ),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  STRING_Delete.tr,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          vGap(16),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-                vGap(30),
-
-                ///-------------total section
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0x19000000),
-                        blurRadius: 12,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                    color: Color(0xffe5e5e5),
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: hMargin),
-                        child: Row(
-                          children: [
-                            Text(
-                              STRING_SubTotal.tr,
-                              style: TextStyle(
-                                color: Theme.of(Get.context!).primaryColorDark,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Spacer(),
-                            Text(
-                              '${STRING_CURRENCY.tr} ${controller.cartTotal}',
-                              style: TextStyle(
-                                color: Theme.of(Get.context!).primaryColorDark,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      vGap(12),
-                      Container(
-                        height: 1,
-                        width: Get.width,
-                        color: Color(0xffD9D9D9),
-                      ),
-                      vGap(12),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: hMargin),
-                        child: Row(
-                          children: [
-                            Text(
-                              STRING_VAT.tr,
-                              style: TextStyle(
-                                color: Theme.of(Get.context!).primaryColorDark,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Spacer(),
-                            Text(
-                              '${STRING_CURRENCY.tr} ${double.parse(controller.subtotal.toStringAsFixed(2))}',
-                              style: TextStyle(
-                                color: Theme.of(Get.context!).primaryColorDark,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      vGap(12),
-                      Container(
-                        height: 1,
-                        width: Get.width,
-                        color: Color(0xffD9D9D9),
-                      ),
-                      vGap(12),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: hMargin),
-                        child: Row(
-                          children: [
-                            Text(
-                              STRING_TOTAL.tr,
-                              style: TextStyle(
-                                color: Theme.of(Get.context!).primaryColorDark,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Spacer(),
-                            Text(
-                              '${STRING_CURRENCY.tr} ${getTotalAmount(controller)}',
-                              style: TextStyle(
-                                color: Theme.of(Get.context!).primaryColorDark,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
                         ),
                       ),
                     ],
                   ),
-                ),
-                vGap(30),
 
-                ///--------Add More button
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        var cotroller =
-                            Get.put(BookServiceProviderController());
-                        var cotrollerr =
-                            Get.put(BookServiceProviderController());
-                        cotroller.updateCurrentTabIndex(1);
-                        cotrollerr.hitGetUserProfileAPI(
-                            controller.cartServiceList[0].providerId);
-                        cotrollerr.servicesListHitApi(
-                            controller.cartServiceList[0].providerId ?? 0);
-                        Get.to(BookServiceProvider(
-                            controller.cartServiceList[0].providerId));
-                      },
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.add_circle,
-                            color: buttonColor,
-                          ),
-                          hGap(4),
-                          text('$STRING_ADD_MORE'.tr,
-                              color: buttonColor, fontSize: 16.0),
-                        ],
-                      ),
-                    ),
-                    Spacer(),
-                    InkWell(
-                      onTap: () {
-                        controller.querySlotData(id);
-                      },
-                      child: Container(
-                        width: 180,
-                        height: 35,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0x19000000),
-                              blurRadius: 12,
-                              offset: Offset(0, 6),
-                            ),
-                          ],
-                          color: buttonColor,
-                        ),
-                        child: Center(
-                          child: Text(
-                            STRING_confirmBooking.tr,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                vGap(DIMENS_30),
-              ],
+                  vGap(DIMENS_30),
+                ],
+              ),
             ),
-          ))
+          )
         : Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -625,9 +633,9 @@ class CartScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: Row(
-        children: [
+        children: <Widget>[
           Row(
-            children: [
+            children: <Widget>[
               Radio(
                   activeColor: COLOR_middleBlueM,
                   value: 1,
@@ -666,4 +674,5 @@ class CartScreen extends StatelessWidget {
       ),
     );
   }
+
 }

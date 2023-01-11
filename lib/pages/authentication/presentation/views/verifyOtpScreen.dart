@@ -2,20 +2,19 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:swift_care/pages/authentication/presentation/controllers/signup_controller.dart';
+import 'package:swift_care/pages/authentication/presentation/views/set_new_pass_screen.dart';
 import '../../../../export.dart';
 
-class VerificationScreen extends StatefulWidget {
+class VerifyOtpScreen extends StatefulWidget {
   final String? phoneNo;
-  bool changePswd = false;
-  bool? setPass;
 
-  VerificationScreen({required this.changePswd, this.phoneNo, this.setPass = false});
+  VerifyOtpScreen({this.phoneNo});
 
   @override
-  State<VerificationScreen> createState() => _VerificationScreenState();
+  State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();
 }
 
-class _VerificationScreenState extends State<VerificationScreen> {
+class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   final formGlobalKey = GlobalKey<FormState>();
 
   @override
@@ -74,7 +73,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                       color: Color(0xff444444),
                                       fontSize: 22,
                                       fontFamily:
-                                          GoogleFonts.poppins().fontFamily,
+                                      GoogleFonts.poppins().fontFamily,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -101,8 +100,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                           .textTheme
                                           .subtitle1!
                                           .copyWith(
-                                              color: Theme.of(context)
-                                                  .primaryColorLight),
+                                          color: Theme.of(context)
+                                              .primaryColorLight),
                                     ),
                                     TextSpan(
                                       text: STRING_authenticationCode.tr,
@@ -110,7 +109,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                           .textTheme
                                           .subtitle1!
                                           .copyWith(
-                                              fontWeight: FontWeight.w600),
+                                          fontWeight: FontWeight.w600),
                                     ),
                                     TextSpan(
                                       text: STRING_weHaveSentYouOn.tr,
@@ -118,8 +117,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                           .textTheme
                                           .subtitle1!
                                           .copyWith(
-                                              color: Theme.of(context)
-                                                  .primaryColorLight),
+                                          color: Theme.of(context)
+                                              .primaryColorLight),
                                     ),
                                     TextSpan(
                                       text: widget.phoneNo ?? "",
@@ -127,9 +126,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                           .textTheme
                                           .subtitle1!
                                           .copyWith(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              fontWeight: FontWeight.w600),
+                                          color: Theme.of(context)
+                                              .primaryColor,
+                                          fontWeight: FontWeight.w600),
                                     ),
                                   ],
                                 ),
@@ -145,7 +144,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                 child: InkWell(
                                   onTap: () {
                                     if (controller.otpController.text.length == 4) {
-                                      controller.hitVerifyOTPApi(widget.changePswd);
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SetNewPassword(otp: controller.otpController.text,)));
+                                      // SetNewPassword(otp: controller.otpController.text,);
+                                      // controller.hitVerifyOTPApi(widget.changePswd);
                                     } else {
                                       snackBar(STRING_EnterOtp.tr);
                                     }
@@ -171,7 +172,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                           color: Colors.white,
                                           fontSize: 18,
                                           fontFamily:
-                                              GoogleFonts.poppins().fontFamily,
+                                          GoogleFonts.poppins().fontFamily,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -187,7 +188,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                   },
                                   child: Row(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Icon(

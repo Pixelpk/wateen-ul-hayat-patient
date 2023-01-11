@@ -64,8 +64,8 @@ class StaticPageController extends GetxController {
   var familyLang;
 
   StaticPageController({this.familyMember});
-
   @override
+
   void onInit() {
     // if (Get.arguments != null) {
     //   familyMember = Get.arguments;

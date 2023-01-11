@@ -126,7 +126,9 @@ class HomeTab extends StatelessWidget {
                               .headline3!
                               .copyWith(
                                   color: Theme.of(context).primaryColor,
-                                  height: 1))
+                                  height: 1,
+                          ),
+                      ),
                     ],
                   )
                 ],
@@ -229,7 +231,7 @@ class HomeTab extends StatelessWidget {
                                               ),
                                             ),
                                             child: Column(
-                                              children: [
+                                              children: <Widget>[
                                                 vGap(12),
                                                 Container(
                                                     height: DIMENS_60,
@@ -338,7 +340,7 @@ class HomeTab extends StatelessWidget {
         decoration: BoxDecoration(
             color: fadeBlue,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
+            boxShadow: <BoxShadow>[
               BoxShadow(
                 color: Colors.grey.shade300,
                 blurRadius: 5,
@@ -384,7 +386,7 @@ class HomeTab extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
+            boxShadow: <BoxShadow>[
               BoxShadow(
                 color: Colors.grey.shade400,
                 blurRadius: 5,

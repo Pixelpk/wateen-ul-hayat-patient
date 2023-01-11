@@ -101,8 +101,22 @@ class AuthRequestModel {
     String? countryCode,
   }) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['User[contact_no]'] = contactNo;
-    data['User[country_code]'] = countryCode;
+    data['contact_no'] = contactNo;
+    data['country_code'] = countryCode;
+    return data;
+  }
+
+  static updatePassReq({
+    String? contactNo,
+    String? countryCode,
+    String? otp,
+    String? password,
+  }) {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['contact_no'] = contactNo;
+    data['country_code'] = countryCode;
+    data['otp'] = otp;
+    data['password'] = password;
     return data;
   }
 
@@ -125,7 +139,6 @@ class AuthRequestModel {
     data['User[oldPassword]'] = oldPassword;
     data['User[password]'] = newPassword;
     data['User[confirm_password]'] = confirmPassword;
-
     return data;
   }
 

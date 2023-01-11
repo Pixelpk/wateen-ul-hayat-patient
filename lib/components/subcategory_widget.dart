@@ -1,22 +1,25 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
 import 'package:swift_care/components/common_widget.dart';
 import 'package:swift_care/model/data_model/categorylist_item_data_modal.dart';
+import 'package:swift_care/pages/home/presentation/controllers/book_service_provider_controller.dart';
 import '../constants/app_constant.dart';
 import '../constants/colors.dart';
 import '../constants/strings.dart';
-import '../pages/home/presentation/controllers/book_service_provider_controller.dart';
-import '../pages/home/presentation/controllers/home_tab_controller.dart';
 
-class SubcategoryWidget extends StatelessWidget {
+class SubcategoryWidget extends StatefulWidget {
   final Services? categoryListItem;
 
-  const SubcategoryWidget({Key? key, required this.categoryListItem}) : super(key: key);
+  const SubcategoryWidget({Key? key, required this.categoryListItem})
+      : super(key: key);
 
+  @override
+  State<SubcategoryWidget> createState() => _SubcategoryWidgetState();
+}
+
+class _SubcategoryWidgetState extends State<SubcategoryWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,7 +42,7 @@ class SubcategoryWidget extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Text(categoryListItem?.title ?? "",
+                child: Text(widget.categoryListItem?.title ?? "",
                     maxLines: 2,
                     textAlign: TextAlign.start,
                     style: GoogleFonts.poppins().copyWith(
@@ -55,59 +58,110 @@ class SubcategoryWidget extends StatelessWidget {
                   await showDialog<void>(
                     context: context,
                     builder: (BuildContext context) => StatefulBuilder(
-                      builder: (context, state) {
+                      builder: (context, setState) {
                         return AlertDialog(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)),
                           content: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Text(
-                                categoryListItem?.description ?? "",
+                                widget.categoryListItem?.description ?? "",
                                 style: Theme.of(context).textTheme.subtitle1,
                               ),
-                              SizedBox(height: 10,),
+                              SizedBox(
+                                height: 24,
+                              ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  minus(),
+                                  minus(onTap: () {
+                                    if(qty>1){
+                                      setState(() {
+                                        qty = qty - 1;
+                                      });
+                                    }
+                                  }),
                                   Text('$qty',
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.poppins().copyWith(
-                                        color: Theme.of(context).primaryColorDark,
+                                        color:
+                                            Theme.of(context).primaryColorDark,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 13,
                                       )),
-                                  plus()
+                                  plus(
+                                    onTap: () {
+                                      if(qty<99){
+                                        setState(() {
+                                          qty = qty + 1;
+                                        });
+                                      }
+
+                                    },
+                                  )
                                 ],
+                              ),
+                              SizedBox(
+                                height: 24,
+                              ),
+                              Center(
+                                child: Container(
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(40),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color(0x19000000),
+                                        blurRadius: 12,
+                                        offset: Offset(0, 6),
+                                      ),
+                                    ],
+                                    color: buttonColor,
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    STRING_order.tr.toUpperCase(),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 11,
+                                      letterSpacing: 1.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
                               )
                             ],
                           ),
                           contentPadding: const EdgeInsets.all(26),
-                          title: Text(categoryListItem?.title ?? ""),
+                          title: Text(widget.categoryListItem?.title ?? ""),
                         );
-                      }
+                      },
                     ),
                   );
 
-                  /*       print("Services called");
+                  ///
+                  /*print("Services called");
                   var ctrl = Get.put(BookServiceProviderController());
-                  print(categoryListItem!.categoryId);
-                  print(categoryListItem!.id);
+                  print(widget.categoryListItem?.categoryId);
+                  print(widget.categoryListItem?.id);
                   ctrl.getLocation(
-                      categoryId: categoryListItem?.categoryId,
-                      id: categoryListItem?.id);
+                      categoryId: widget.categoryListItem?.categoryId,
+                      id: widget.categoryListItem?.id);
 
                   ctrl.update();*/
+                  ///
                 },
                 child: Container(
                   width: 90,
                   height: 25,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
-                    boxShadow: [
+                    boxShadow: <BoxShadow>[
                       BoxShadow(
                         color: Color(0x19000000),
                         blurRadius: 12,
@@ -159,7 +213,7 @@ class SubcategoryWidget extends StatelessWidget {
           // )
 
           ReadMoreText(
-            categoryListItem?.description ?? "",
+            widget.categoryListItem?.description ?? "",
             style: TextStyle(
               color: Theme.of(context).primaryColorLight,
               fontSize: 14,
@@ -170,7 +224,10 @@ class SubcategoryWidget extends StatelessWidget {
             trimMode: TrimMode.Line,
             trimCollapsedText: ' View More',
             trimExpandedText: ' View Less',
-            lessStyle: TextStyle(fontSize: 14, color: primaryColor, decorationStyle: TextDecorationStyle.dashed),
+            lessStyle: TextStyle(
+                fontSize: 14,
+                color: primaryColor,
+                decorationStyle: TextDecorationStyle.dashed),
             moreStyle: TextStyle(
               fontSize: 14,
               color: primaryColor,

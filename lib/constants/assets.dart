@@ -37,6 +37,8 @@ const String ICON_bookmark = "assets/icons/bookmark.png";
 
 const String ICON_splashBg = "assets/icons/ic_splash.png";
 const String ICON_whiteAppLogo = "assets/icons/logo.png";
+const String ICON_splashLogo = "assets/images/wateenLogo.png";
+const String ICON_splashLogoWhite = "assets/images/wateen_logo_white.png";
 const String ICON_appLogo = "assets/icons/logo.png";
 const String ICON_homeAppLogo = "assets/icons/ic_smalllogo.png";
 const String ICON_checkBox = "assets/icons/ic_tickk.png";

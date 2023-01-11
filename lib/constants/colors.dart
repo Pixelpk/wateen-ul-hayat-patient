@@ -21,7 +21,12 @@ BoxDecoration cardDecoration = BoxDecoration(
     bottomLeft: Radius.circular(10),
     bottomRight: Radius.circular(10),
   ),
-  boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.10000000149011612), offset: Offset(0, 4), blurRadius: 12)],
+  boxShadow: [
+    BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.10000000149011612),
+        offset: Offset(0, 4),
+        blurRadius: 12)
+  ],
   color: Color.fromRGBO(255, 255, 255, 1),
 );
 BoxDecoration appBarDeco = BoxDecoration(
@@ -29,7 +34,12 @@ BoxDecoration appBarDeco = BoxDecoration(
     topLeft: Radius.circular(10),
     topRight: Radius.circular(10),
   ),
-  boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.10000000149011612), offset: Offset(0, 4), blurRadius: 12)],
+  boxShadow: [
+    BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.10000000149011612),
+        offset: Offset(0, 4),
+        blurRadius: 12)
+  ],
   color: Color.fromRGBO(255, 255, 255, 1),
 );
 const Color lScaffoldColor = Color(0xffF5F5F5);
@@ -114,9 +124,19 @@ const loginDeco = BoxDecoration(
     bottomLeft: Radius.circular(20),
     bottomRight: Radius.circular(20),
   ),
-  boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.07000000029802322), offset: Offset(0, 6), blurRadius: 24)],
+  boxShadow: [
+    BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.07000000029802322),
+        offset: Offset(0, 6),
+        blurRadius: 24)
+  ],
   color: Color.fromRGBO(255, 255, 255, 1),
 );
 
-Widget minus({double? height}) => Image.asset('assets/icons/minus.png', height: height ?? 20);
-Widget plus({double? height}) => Image.asset('assets/icons/plus.png', height: height ?? 20);
+Widget minus({double? height, VoidCallback? onTap}) => GestureDetector(
+    onTap: onTap ?? () {},
+    child: Image.asset('assets/icons/minus.png', height: height ?? 20));
+
+Widget plus({double? height, VoidCallback? onTap}) => GestureDetector(
+    onTap: onTap ?? () {},
+    child: Image.asset('assets/icons/plus.png', height: height ?? 20));

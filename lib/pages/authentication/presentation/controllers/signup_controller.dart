@@ -132,15 +132,13 @@ class SignUpController extends SuperController {
       Get.put(SignUpController());
       Get.to(VerificationScreen(
         changePswd: false,
-        phoneNo:
-            selectedCountryCode + contactController.text.trim().toLowerCase(),
+        phoneNo: selectedCountryCode + contactController.text.trim().toLowerCase(),
       ));
       clearFields();
       snackBar(STRING_OTPis.tr.toString() + ' ${loginModel?.otp}');
     }).onError((error, stackTrace) {
       customLoader.hide();
       loader.value = false;
-
       snackBar(error);
     });
   }

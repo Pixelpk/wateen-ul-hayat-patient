@@ -29,14 +29,14 @@ class SignUpScreen extends StatelessWidget {
                     height: Get.height - safePadding,
                     child: Stack(
                       alignment: Alignment.bottomLeft,
-                      children: [
-                        Column(children: [
+                      children: <Widget>[
+                        Column(children: <Widget>[
                           SizedBox(
                             height: Get.height * 0.04,
                           ),
                           Stack(
                             alignment: Alignment.topRight,
-                            children: [
+                            children: <Widget>[
                               Center(
                                 child: Image.asset(
                                   ICON_appLogo,
@@ -79,7 +79,8 @@ class SignUpScreen extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.w500,
                                                       color: Theme.of(context)
-                                                          .primaryColor),
+                                                          .primaryColor,
+                                              ),
                                             ),
                                           ),
                                           PopupMenuItem<String>(
@@ -98,9 +99,10 @@ class SignUpScreen extends StatelessWidget {
                                           ),
                                         ],
                                     child: Row(
-                                      children: [
+                                      children: <Widget>[
                                         SvgPicture.asset(
-                                            "assets/images/global_icon.svg"),
+                                          "assets/images/global_icon.svg",
+                                        ),
                                         SizedBox(
                                           width: 8,
                                         ),
@@ -130,7 +132,7 @@ class SignUpScreen extends StatelessWidget {
                                 vertical: Get.height * 0.05),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
+                              boxShadow: <BoxShadow>[
                                 BoxShadow(
                                   color: Color(0x11000000),
                                   blurRadius: 32,
@@ -140,9 +142,9 @@ class SignUpScreen extends StatelessWidget {
                               color: Colors.white,
                             ),
                             child: Column(
-                              children: [
+                              children: <Widget>[
                                 Row(
-                                  children: [
+                                  children: <Widget>[
                                     Text(
                                       STRING_register.tr,
                                       style: TextStyle(
@@ -169,7 +171,7 @@ class SignUpScreen extends StatelessWidget {
                                 Form(
                                   key: formGlobalKey,
                                   child: Column(
-                                    children: [
+                                    children: <Widget>[
                                       InputFieldWidget(
                                         controller:
                                             controller.contactController,
@@ -219,7 +221,6 @@ class SignUpScreen extends StatelessWidget {
                                         height: 12,
                                       ),
                                       InputFieldWidget(
-
                                         controller:
                                             controller.passwordController,
                                         showUnderLineBorder: true,
@@ -228,7 +229,7 @@ class SignUpScreen extends StatelessWidget {
                                         // prefixIcon: Icons.lock,
                                         prefixWidget: Row(
                                           mainAxisSize: MainAxisSize.min,
-                                          children: [
+                                          children: <Widget>[
                                             SizedBox(
                                               width: 12,
                                             ),
@@ -285,7 +286,7 @@ class SignUpScreen extends StatelessWidget {
                                   height: Get.height * 0.02,
                                 ),
                                 Row(
-                                  children: [
+                                  children: <Widget>[
                                     // InkWell(
                                     //   onTap: () {
                                     //     controller.updateAgreeTerms();
@@ -319,7 +320,7 @@ class SignUpScreen extends StatelessWidget {
                                     Expanded(
                                       child: RichText(
                                         text: TextSpan(
-                                          children: [
+                                          children: <InlineSpan>[
                                             TextSpan(
                                                 text: STRING_iAgreeWith.tr,
                                                 style: Theme.of(context)
@@ -335,24 +336,25 @@ class SignUpScreen extends StatelessWidget {
                                                 // ),
                                                 ),
                                             TextSpan(
-                                                text: ' ' +
-                                                    STRING_termsAndCond.tr +
-                                                    '.',
-                                                recognizer:
-                                                    new TapGestureRecognizer()
-                                                      ..onTap = () => Get.to(
-                                                          StaticPageScreen(
-                                                              title:
-                                                                  STRING_termsAndCond
-                                                                      .tr)),
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1!
-                                                    .copyWith(
-                                                        color: Theme.of(context)
-                                                            .primaryColor,
-                                                        fontWeight:
-                                                            FontWeight.w600)),
+                                              text: ' ' +
+                                                  STRING_termsAndCond.tr +
+                                                  '.',
+                                              recognizer:
+                                                  new TapGestureRecognizer()
+                                                    ..onTap = () => Get.to(
+                                                        StaticPageScreen(
+                                                            title:
+                                                                STRING_termsAndCond
+                                                                    .tr)),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1!
+                                                  .copyWith(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -378,7 +380,7 @@ class SignUpScreen extends StatelessWidget {
                                     height: 40,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(40),
-                                      boxShadow: [
+                                      boxShadow: <BoxShadow>[
                                         BoxShadow(
                                           color: Color(0x19000000),
                                           blurRadius: 12,
@@ -422,7 +424,7 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           RichText(
                             text: TextSpan(
-                              children: [
+                              children: <InlineSpan>[
                                 TextSpan(
                                   text: STRING_AlreadyHaveAnAccount.tr,
                                   style: Theme.of(context)

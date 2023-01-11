@@ -186,9 +186,25 @@ class APIRepository {
 
   static Future forgetApiCall({Map<String, dynamic>? dataBody}) async {
     try {
+      debugPrint('dataBody :::::: $dataBody');
       final response = await dioClient!.post(end_pt_forgotPassword,
+          data: FormData.fromMap(dataBody!), skipAuth: false);
+      debugPrint('dataBody :::::: $response');
+      return response['otp'] == null ? response['message'] : response['otp'];
+      // return SignUpResponseModel.fromJson(response);
+    } catch (e) {
+      return Future.error(NetworkExceptions.getDioException(e));
+    }
+  }
+
+  static Future updatePasswordApiCall({Map<String, dynamic>? dataBody}) async {
+    try {
+      debugPrint('dataBody :::::: $dataBody');
+      final response = await dioClient!.post(end_pt_updatePassword,
           data: FormData.fromMap(dataBody!), skipAuth: true);
-      return SignUpResponseModel.fromJson(response);
+      debugPrint('dataBody :::::: $response');
+      return  response['message'];
+      // return SignUpResponseModel.fromJson(response);
     } catch (e) {
       return Future.error(NetworkExceptions.getDioException(e));
     }

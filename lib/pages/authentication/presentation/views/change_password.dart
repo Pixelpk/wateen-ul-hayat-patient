@@ -1,6 +1,5 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:swift_care/components/common_widget.dart';
-import 'package:swift_care/components/default_app_bar.dart';
 import 'package:swift_care/components/inputfield_widget.dart';
 import 'package:swift_care/pages/staticPages/presentation/controllers/static_page_controller.dart';
 import '../../../../export.dart';

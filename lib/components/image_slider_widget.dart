@@ -85,7 +85,7 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
                             children: [
                               vGap(10),
                               Container(
-                                width: 241,
+                                width: 235,
                                 child: Text(
                                     widget.topRatedSubCategories[itemIndex]
                                             .title ??
@@ -101,13 +101,13 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
                               ),
                               vGap(8),
                               Container(
-                                width: 241,
+                                width: 235,
                                 height: 1,
                                 color: Colors.white,
                               ),
                               vGap(8),
                               Container(
-                                width: 241,
+                                width: 235,
                                 child: Text(
                                   widget.topRatedSubCategories[itemIndex]
                                           .description ??

@@ -3,9 +3,9 @@ import 'package:swift_care/components/profile_widget.dart';
 import 'package:swift_care/components/user_image.dart';
 import 'package:swift_care/pages/authentication/presentation/controllers/profile_controller.dart';
 import 'package:swift_care/service/remote_service/network/endpoint.dart';
-
 import '../../../../components/family_member_widget.dart';
 import '../../../../export.dart';
+import '../../../agora/video_calling/spinner.dart';
 import '../controllers/complete_profile_screen_controller.dart';
 import 'add_family_member.dart';
 import 'completer_profile_screen.dart';
@@ -31,10 +31,10 @@ class ProfileScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
                 child: Column(
-                  children: [
+                  children: <Widget>[
                     vGap(16),
                     Stack(
-                      children: [
+                      children: <Widget>[
                         Container(
                             width: Get.width,
                             margin: EdgeInsets.only(top: 51),
@@ -50,7 +50,7 @@ class ProfileScreen extends StatelessWidget {
                               color: Colors.white,
                             ),
                             child: Column(
-                              children: [
+                              children: <Widget>[
                                 vGap(60),
                                 ProfileWidget(
                                   label: STRING_fullName.tr,
@@ -59,8 +59,7 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 ProfileWidget(
                                   label: STRING_mobileNo.tr,
-                                  value:
-                                      '${controller.loginModel?.detail?.countryCode ?? ''} ${controller.loginModel?.detail?.contactNo}',
+                                  value: '${controller.loginModel?.detail?.countryCode ?? ''} ${controller.loginModel?.detail?.contactNo}',
                                 ),
                                 ProfileWidget(
                                   label: STRING_EmailID.tr,
@@ -89,13 +88,19 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                               ],
                             )),
-                        PositionedDirectional(
-                          start: 0,
-                          top: 0,
-                          end: 0,
-                          child: UserImage(
-                            imageUrl:
-                                '$imageUrl${controller.loginModel?.detail?.profileFile}',
+                        GestureDetector(
+                          onTap: (){
+                            // showTimerDialog(context);
+                            // Navigator.push(context, MaterialPageRoute(builder: (context) => VideoCallingScreen()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => PakistaniFlag()));
+                          },
+                          child: PositionedDirectional(
+                            start: 0,
+                            top: 0,
+                            end: 0,
+                            child: UserImage(
+                              imageUrl: '$imageUrl${controller.loginModel?.detail?.profileFile}',
+                            ),
                           ),
                         ),
                         PositionedDirectional(
@@ -160,7 +165,7 @@ class ProfileScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 12),
                         alignment: AlignmentDirectional.centerStart,
                         child: Row(
-                          children: [
+                          children: <Widget>[
                             Text(
                               STRING_addFamilyMembers.tr,
                               style: TextStyle(

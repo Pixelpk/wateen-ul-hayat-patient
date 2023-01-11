@@ -27,8 +27,7 @@ class ServiceProviders extends StatelessWidget {
           return SafeArea(
             child: Scaffold(
                 appBar:
-                    DefaultAppBar(title: STRING_serviceProviders.tr, actions: [
-                  InkWell(
+                    DefaultAppBar(title: STRING_serviceProviders.tr, actions: [InkWell(
                     onTap: () async {
                       FilterModel filterModel =
                           await Get.to(FilterScreen(categoryId ?? 0, id ?? 0));

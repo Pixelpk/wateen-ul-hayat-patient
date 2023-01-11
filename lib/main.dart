@@ -82,6 +82,7 @@ class _MyAppState extends State<MyApp> {
                 defaultTransition: Transition.cupertino,
                 // textDirection: TextDirection.ltr,
               ),
-            ));
+            ),
+    );
   }
 }

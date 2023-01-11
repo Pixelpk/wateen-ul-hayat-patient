@@ -107,6 +107,7 @@ const String STRING_AddCardFirst = "Please Add Card First!";
 const String STRING_AlreadyBooked = "This Slot is already Booked!";
 
 const String STRING_ChangePassword = "Change Password";
+const String STRING_SetPassword = "Set Password";
 const String STRING_AboutUs = "About Us";
 const String STRING_Help = "Help";
 const String STRING_EnterOld = "Please enter old password";
@@ -163,6 +164,7 @@ const String STRING_nurseHiringDesc =
     "A hospital sitter is a caregiver who provides patients in need of supervision with companionship and care. Hospital sitters provide a"
     "compassionate substitute for restraints, seclusion rooms, and other measures to deal with challenging patients. Also known as patient sitter or patient companion.";
 const String STRING_orderNow = "Order Now";
+const String STRING_order = "Order";
 const String STRING_preparePatientsDummy =
     "Prepare patients for examinations and perform routine diagnostic checks";
 
@@ -290,7 +292,7 @@ const String STRING_IncorrectEmailPassword = 'Incorrect Email or Password';
 const String STRING_ALL_SERVICES = 'View All Services';
 const String STRING_NO_PROVIDER = 'No Service Provider Available';
 const String STRING_NoCardAdded = 'No Card Added';
-const String STRING_OTPis = 'OTP is';
+const String STRING_OTPis = 'The OTP for signing up to Wateen al Hayat patient application is ';
 const String STRING_OTPVerified = 'OTP Verified Successfully';
 const String STRING_PleaseSelectStartDateFirst = 'Please Select Start Date!';
 
